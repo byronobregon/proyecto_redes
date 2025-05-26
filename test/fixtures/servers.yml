@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ip_address: MyString
+  name: MyString
+  authentication_token: MyString
+  status: 1
+
+two:
+  ip_address: MyString
+  name: MyString
+  authentication_token: MyString
+  status: 1
