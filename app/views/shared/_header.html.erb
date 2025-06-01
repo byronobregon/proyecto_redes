@@ -3,16 +3,18 @@
   <div class="flex items-center space-x-6">
     <span>
     </span>
-    <span>
-      <i class="fa-solid fa-right-from-bracket"></i>
-      <%=
-        link_to "Cerrar Sesión",
-          destroy_user_session_path,
-          data: {
-            "turbo-confirm": "¿Estás seguro que quieres salir?",
-            "turbo-method": :delete
-          } if user_signed_in?
-      %>
+    <span class='text-red-500'>
+      <% if @server && !@server.new_record? %>
+      <i class="fa-solid fa-trash"></i>
+        <%=
+          link_to "Eliminar Servidor",
+            server_path,
+            data: {
+              "turbo-confirm": "¿Estás seguro?",
+              "turbo-method": :delete
+            }
+        %>
+      <% end %>
     </span>
   </div>
 </header>

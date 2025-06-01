@@ -1,6 +1,6 @@
 <div class="bg-white p-6 shadow rounded-lg">
-  <h3 class="text-xl font-semibold mb-2">Users Behavior</h3>
-  <p class="text-sm text-gray-500 mb-4">24 Hours performance</p>
+  <h3 class="text-xl font-semibold mb-2"><%= @server.name %></h3>
+  <p class="text-sm text-gray-500 mb-4"><%= @server.server_status %></p>
   <canvas id="userChart" class="w-full h-64"></canvas>
   <div class="mt-4 flex space-x-4 text-sm">
     <span class="flex items-center"><span class="w-3 h-3 bg-red-500 inline-block mr-1"></span>Open</span>
