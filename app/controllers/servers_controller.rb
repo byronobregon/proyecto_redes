@@ -1,25 +1,18 @@
 class ServersController < ApplicationController
   before_action :set_server, only: %i[ show edit update destroy ]
 
-  # GET /servers or /servers.json
   def index
     @servers = Server.all
   end
 
-  # GET /servers/1 or /servers/1.json
-  def show
-  end
+  def show; end
 
-  # GET /servers/new
   def new
     @server = Server.new
   end
 
-  # GET /servers/1/edit
-  def edit
-  end
+  def edit; end
 
-  # POST /servers or /servers.json
   def create
     @server = Server.new(server_params)
 
@@ -34,7 +27,6 @@ class ServersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /servers/1 or /servers/1.json
   def update
     respond_to do |format|
       if @server.update(server_params)
@@ -47,7 +39,6 @@ class ServersController < ApplicationController
     end
   end
 
-  # DELETE /servers/1 or /servers/1.json
   def destroy
     @server.destroy!
 
@@ -58,13 +49,12 @@ class ServersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_server
-      @server = Server.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def server_params
-      params.expect(server: [ :ip_address, :name, :authentication_token, :status ])
-    end
+  def set_server
+    @server = Server.find(params.expect(:id))
+  end
+
+  def server_params
+    params.expect(server: %i[ ip_address name authentication_token ])
+  end
 end

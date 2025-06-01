@@ -1,37 +1,38 @@
-<%= form_with(model: server) do |form| %>
-  <% if server.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(server.errors.count, "error") %> prohibited this server from being saved:</h2>
+<div class="bg-white p-6 shadow rounded-lg">
+  <h3 class="text-xl font-semibold mb-4">Iniciar Sesión</h3>
+  <%= form_with(model: server, html: { class: "space-y-4" }) do |form| %>
+    <% if server.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(server.errors.count, "error") %> prohibited this server from being saved:</h2>
 
-      <ul>
-        <% server.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% server.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.label "URL / IP", class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :ip_address, class: 'mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2' %>
+    </div>
+
+    <div>
+      <%= form.label :nombre, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :name, class: 'mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2' %>
+    </div>
+
+    <div>
+      <%= form.label "token de autenticación", class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :authentication_token, class: 'mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2' %>
+    </div>
+
+    <div>
+      <%=
+        form.submit "Guardar",
+        class: "bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-700"
+      %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :ip_address, style: "display: block" %>
-    <%= form.text_field :ip_address %>
-  </div>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :authentication_token, style: "display: block" %>
-    <%= form.text_field :authentication_token %>
-  </div>
-
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.number_field :status %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
