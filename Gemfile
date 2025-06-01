@@ -43,7 +43,11 @@ gem "thruster", require: false
 # User authentication
 gem "devise", "~> 4.9.4"
 
+# Theming
+gem "tailwindcss-rails", "~> 3.3.1"
+
 group :development, :test do
+  gem "foreman"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
