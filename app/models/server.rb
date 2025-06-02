@@ -15,4 +15,8 @@ class Server < ApplicationRecord
   # 50% =< 70% : bg-yellow-500
   # 71% =< 80 : bg-orange-500
   # > 81% : bg-red-500
+
+  def ask_for_status
+    status = MonitorService.new(self).check_server
+  end
 end

@@ -46,6 +46,9 @@ gem "devise", "~> 4.9.4"
 # Theming
 gem "tailwindcss-rails", "~> 3.3.1"
 
+# HTTP requests
+gem "httparty"
+
 group :development, :test do
   gem "foreman"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
