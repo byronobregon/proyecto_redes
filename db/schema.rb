@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_01_234841) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_02_211434) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "server_logs", force: :cascade do |t|
+    t.bigint "server_id", null: false
+    t.time "time"
+    t.float "cpu_usage", default: 0.0
+    t.float "memory_usage", default: 0.0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["server_id"], name: "index_server_logs_on_server_id"
+  end
 
   create_table "servers", force: :cascade do |t|
     t.string "ip_address"
@@ -35,4 +45,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_01_234841) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "server_logs", "servers"
 end

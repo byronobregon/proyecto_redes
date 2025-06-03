@@ -1,4 +1,6 @@
 class Server < ApplicationRecord
+  has_many :server_logs, dependent: :destroy
+
   enum :server_status, [:online, :offline, :warning]
 
   def status_style
@@ -17,6 +19,12 @@ class Server < ApplicationRecord
   # > 81% : bg-red-500
 
   def ask_for_status
-    status = MonitorService.new(self).check_server
+    data = MonitorService.new(self).check_server
+    if data.success?
+      ServerLog.register(data, id)
+      update(server_status: :online)
+    else
+      update(server_status: :offline)
+    end
   end
 end
