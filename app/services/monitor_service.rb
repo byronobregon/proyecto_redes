@@ -4,14 +4,16 @@ class MonitorService
     @token = server.authentication_token
   end
 
+  # envía consulta al servidor ERP
   def check_server
     response = HTTParty.get(@url, headers: {
       "Authorization" => "Bearer #{@token}"
     })
-    # guardar en base de datos o log
-    rescue => e
-      Rails.logger.error "Fallo conexión con #{instance[:name]}: #{e.message}"
 
+    rescue => e
+      Rails.logger.error "Fallo conexión: #{e.message}"
+
+    # retorna el resultado obtenido desde el servidor
     response
   end
 end
