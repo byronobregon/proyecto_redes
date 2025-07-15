@@ -18,8 +18,27 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - redis
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
+    networks:
+      - shared
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
+    networks:
+      - shared
+
+  redis:
+    image: redis:7
     networks:
       - shared
 

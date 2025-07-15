@@ -49,6 +49,10 @@ gem "tailwindcss-rails", "~> 3.3.1"
 # HTTP requests
 gem "httparty"
 
+# automated tasks (cron)
+gem 'sidekiq'
+gem 'sidekiq-cron'
+
 group :development, :test do
   gem "foreman"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
