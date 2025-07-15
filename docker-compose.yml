@@ -6,8 +6,10 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - db_data:/var/lib/postgresql/data
+    networks:
+      - shared
 
-  web:
+  monitor:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b 0.0.0.0"
     volumes:
@@ -18,8 +20,15 @@ services:
       - db
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
+    networks:
+      - shared
 
 volumes:
   db_data:
+    external: true
+    name: redes_usach
+
+networks:
+  shared:
     external: true
     name: redes_usach

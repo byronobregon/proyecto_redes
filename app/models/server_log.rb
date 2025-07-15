@@ -3,6 +3,8 @@ class ServerLog < ApplicationRecord
 
   scope :latest_log, -> { order(id: :desc).first }
 
+  default_scope { order(id: :desc) }
+
   def self.register(data, server_id)
     create(
       time: data['time'],

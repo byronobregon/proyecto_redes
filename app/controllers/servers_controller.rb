@@ -5,7 +5,9 @@ class ServersController < ApplicationController
     @servers = Server.all
   end
 
-  def show; end
+  def show
+    @server_logs = @server.server_logs
+  end
 
   def new
     @server = Server.new
