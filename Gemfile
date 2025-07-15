@@ -44,7 +44,7 @@ gem "thruster", require: false
 gem "devise", "~> 4.9.4"
 
 # Theming
-gem "tailwindcss-rails", "~> 3.3.1"
+gem "tailwindcss-rails", "~> 4.3.0"
 
 # HTTP requests
 gem "httparty"
