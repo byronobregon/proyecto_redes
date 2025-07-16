@@ -10,7 +10,12 @@ consumer.subscriptions.create("ServerStatusChannel", {
   },
 
   received(data) {
-    window.location.reload();
+    var view = document.body.getAttribute('data-view')
+    if (view === "index" || view === "show") {
+      window.location.reload();
+    } else {
+      console.log("aquí no se refresca")
+    }
     // Called when there's incoming data on the websocket for this channel
   }
 });
