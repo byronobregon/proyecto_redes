@@ -6,7 +6,17 @@ class ServersController < ApplicationController
   end
 
   def show
-    @server_logs = @server.server_logs
+    @server_logs = @server.server_logs.first(
+                     if params[:time] == 'hour'
+                       60
+                     elsif params[:time] == 'day'
+                       1440
+                     elsif params[:time] == 'week'
+                       10080
+                     else
+                       30
+                     end
+                   )
   end
 
   def new
