@@ -61,6 +61,12 @@ Una vez confirmados los cambios se debe ejecutar el siguiente comando para aplic
 docker compose run monitor rails db:seed
 ```
 
+Por último, es necesario instalar tailwindcss:
+
+```bash
+docker compose run monitor rails tailwindcss:install
+```
+
 En este punto, ya se puede acceder al sistema con las credenciales creadas en
 http://localhost:3000
 
