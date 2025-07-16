@@ -20,10 +20,12 @@ class Server < ApplicationRecord
 
   def ask_for_status
     data = MonitorService.new(self).check_server
-    if data.success?
+    if data&.success?
       ServerLog.register(data, id)
       update(server_status: :online)
     else
+      data = { 'time' => Time.now, 'cpu' => 0, 'memory' => 0 }
+      ServerLog.register(data, id)
       update(server_status: :offline)
     end
   end

@@ -13,18 +13,18 @@
     new Chart(ctx, {
       type: 'line',
       data: {
-        labels: <%= raw @server_logs.first(100).pluck(:time).map { |time| time.strftime("%H:%M:%S") }.reverse %>,
+        labels: <%= raw @server_logs.first(100).pluck(:time).map { |time| time&.strftime("%H:%M:%S") }.reverse.compact %>,
         datasets: [
           {
             label: 'Memory Usage',
-            data: <%= raw @server_logs.first(100).pluck(:memory_usage).reverse %>,
+            data: <%= raw @server_logs.first(100).pluck(:memory_usage).reverse.compact %>,
             borderColor: 'rgba(233, 180, 6, 1)',
             fill: false,
             pointStyle: false
           },
           {
             label: 'CPU Usage',
-            data: <%= raw @server_logs.first(100).pluck(:cpu_usage).reverse %>,
+            data: <%= raw @server_logs.first(100).pluck(:cpu_usage).reverse.compact %>,
             borderColor: 'rgba(33, 196, 94, 1)',
             fill: false,
             pointStyle: false
