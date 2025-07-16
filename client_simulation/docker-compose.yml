@@ -1,0 +1,35 @@
+# version: '3.9'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    command: postgres -p 5433
+    networks:
+      - shared
+
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails server -b 0.0.0.0"
+    volumes:
+      - .:/app
+    ports:
+      - "3001:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5433/postgres
+    networks:
+      - shared
+
+volumes:
+  db_data:
+    external: true
+    name: redes_usach_cliente
+
+networks:
+  shared:
+    external: true
+    name: redes_usach
