@@ -54,7 +54,7 @@ gem 'sidekiq'
 gem 'sidekiq-cron'
 
 # Action cable adapter
-gem "redis", "~> 5.0"
+gem "redis", "~> 5.4"
 
 group :development, :test do
   gem "foreman"
